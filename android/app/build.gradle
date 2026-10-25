@@ -15,6 +15,17 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+// Keep developer-specific API keys outside version control.
+def mapsProperties = new Properties()
+def mapsPropertiesFile = rootProject.file("maps.properties")
+if (mapsPropertiesFile.exists()) {
+    mapsPropertiesFile.withInputStream { mapsProperties.load(it) }
+}
+def mapsApiKey = mapsProperties.getProperty("GOOGLE_MAPS_API_KEY", "").trim()
+if (!mapsApiKey || mapsApiKey == "YOUR_ANDROID_MAPS_API_KEY") {
+    throw new GradleException("Set GOOGLE_MAPS_API_KEY in android/maps.properties. See README.md.")
+}
+
 android {
     namespace = "com.example.BuStop"
     compileSdk = flutter.compileSdkVersion
@@ -30,6 +41,7 @@ android {
     }
 
     defaultConfig {
+        manifestPlaceholders["GOOGLE_MAPS_API_KEY"] = mapsApiKey
         applicationId = "com.example.BuStop"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
