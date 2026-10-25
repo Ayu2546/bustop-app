@@ -1,7 +1,7 @@
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:flutter/material.dart';
-import 'package:bustop/CustomBar.dart';
-import 'package:bustop/scandata.dart';
+import 'package:bustop/custom_navigation_bar.dart';
+import 'package:bustop/scan_data.dart';
 
 class Scanner extends StatelessWidget {
   const Scanner({super.key});

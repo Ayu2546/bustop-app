@@ -6,8 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'dart:async';
 import 'dart:convert';
-import 'CustomBar.dart';
-import 'database.dart';
+import 'custom_navigation_bar.dart';
+import 'database_helper.dart';
 
 var logger = Logger();
 

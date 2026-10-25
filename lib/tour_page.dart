@@ -1,7 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:bustop/CustomBar.dart';
-import 'package:bustop/Puzzle.dart';
+import 'package:bustop/custom_navigation_bar.dart';
+import 'package:bustop/puzzle_page.dart';
 
 class TourPage extends StatelessWidget {
   const TourPage({super.key});
