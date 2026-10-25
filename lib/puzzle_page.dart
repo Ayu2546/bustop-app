@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Puzzle extends StatelessWidget {
   final List<Image> puzzlePieces;
 
-  Puzzle({required this.puzzlePieces});
+  const Puzzle({super.key, required this.puzzlePieces});
 
   @override
   Widget build(BuildContext context) {
