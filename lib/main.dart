@@ -125,7 +125,17 @@ class _MapScreenState extends State<MapScreen> {
     debugPrint(
         "Is Tsurugajo: $isTsurugajo"); // Debug: print whether it's a Tsurugajo-related search
 
-    final apiKey = 'AIzaSyB3WzJiraDNM_hDGe9M_f1-bjzgSry53nc';
+    const apiKey = String.fromEnvironment('GOOGLE_GEOCODING_API_KEY');
+    if (apiKey.isEmpty) {
+      logger.w('GOOGLE_GEOCODING_API_KEY is not configured.');
+      if (!mounted) return;
+      await showOkAlertDialog(
+        context: context,
+        title: 'Search unavailable',
+        message: 'Location search has not been configured.',
+      );
+      return;
+    }
     final url = Uri.parse(
         'https://maps.googleapis.com/maps/api/geocode/json?address=${Uri.encodeComponent(searchQuery)}&key=$apiKey');
 
