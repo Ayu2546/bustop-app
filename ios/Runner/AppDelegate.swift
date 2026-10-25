@@ -3,7 +3,7 @@ import UIKit
 import GoogleMaps
 
 @main
-@objc class AppDelegate: FlutterAppDelegate {
+@objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate {
   override func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -14,8 +14,20 @@ import GoogleMaps
           mapsApiKey != "YOUR_IOS_MAPS_API_KEY" else {
       fatalError("Set GOOGLE_MAPS_API_KEY in ios/Flutter/Secrets.xcconfig. See README.md.")
     }
+
     GMSServices.provideAPIKey(mapsApiKey)
-    GeneratedPluginRegistrant.register(with: self)
-    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+
+    return super.application(
+      application,
+      didFinishLaunchingWithOptions: launchOptions
+    )
+  }
+
+  func didInitializeImplicitFlutterEngine(
+    _ engineBridge: FlutterImplicitEngineBridge
+  ) {
+    GeneratedPluginRegistrant.register(
+      with: engineBridge.pluginRegistry
+    )
   }
 }
